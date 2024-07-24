@@ -1,3 +1,28 @@
+export interface MapsResponse {
+    name: string;
+};
+
+export type GameMode = 'Move' | 'NM' | 'NMPZ';
+
+export interface ChallengeSettings {
+    map: string;
+    mode: GameMode;
+};
+
+export interface ChallengePayload {
+    map: string;
+    forbidMoving: boolean;
+    forbidRotating: boolean;
+    forbidZooming: boolean;
+    timeLimit: number;
+    rounds: number;
+};
+
+export interface ChallengeSettingsForPost {
+    name: string;
+    mode: GameMode;
+    token: string;
+};
 
 export interface ChallengeResponse {
     token: string;
@@ -8,7 +33,7 @@ export interface ChallengeToken {
     token: string;
 };
 
-interface Highscore {
+interface HighscoresResponse {
     map(arg0: (entry: any, index: any) => string): unknown;
     items: [
         {
@@ -21,5 +46,5 @@ interface Highscore {
 export interface ChallengeHighscores {
     timestamp: number;
     token: string;
-    highscores: Highscore;
+    highscores: HighscoresResponse;
 };

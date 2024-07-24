@@ -3,15 +3,17 @@ import express from 'express';
 import cron from 'node-cron';
 import { postChallengeToDiscord, postResultToDiscord } from './discord/index.js';
 import { createChallenge, getHighscores } from './geoguessr-api/index.js';
+import { defaultChallenge } from './settings.js';
 
 dotenv.config();
 const app = express();
 const port = 25000;
 
 const challenge = async () => {
-    const challengeToken = await createChallenge();
-    if (challengeToken) {
-        await postChallengeToDiscord(challengeToken);
+    const challengePayload = defaultChallenge();
+    const ChallengeSettings = await createChallenge(challengePayload);
+    if (ChallengeSettings) {
+        await postChallengeToDiscord(ChallengeSettings);
     }
 };
 

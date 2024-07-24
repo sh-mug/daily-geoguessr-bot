@@ -1,7 +1,8 @@
 import fs from 'fs/promises';
-import fetch, { RequestInit } from 'node-fetch';
+import fetch from 'node-fetch';
 import path from 'path';
 import { ChallengeHighscores, ChallengeToken } from '../types.js';
+import { createRequestOptions } from './common.js';
 import { loginAndGetCookie } from './login.js';
 
 const tokenFilePath = path.resolve('challengeToken.json');
@@ -16,23 +17,13 @@ const highscoresUrl: (challengeId: string) => string = (challengeId: string) => 
     return `https://www.geoguessr.com/api/v3/results/highscores/${challengeId}?${params}`;
 };
 
-const highscoresRequestOptions: (cookie: string) => RequestInit = (cookie: string) => ({
-    method: 'GET',
-    headers: {
-        'Accept': '*/*',
-        'Accept-Encoding': 'gzip, deflate, br, zstd',
-        'Accept-Language': 'en-US,en;q=0.9,ja;q=0.8',
-        'Content-Type': 'application/json',
-        'Cookie': cookie
-    },
-});
-
 export const getHighscores = async (): Promise<ChallengeHighscores | undefined> => {
     try {
         const cookie = await loginAndGetCookie();
         const tokenData = await fs.readFile(tokenFilePath, 'utf8')
             .then(data => JSON.parse(data) as ChallengeToken);
-        const response = await fetch(highscoresUrl(tokenData.token), highscoresRequestOptions(cookie));
+        const options = createRequestOptions('GET', cookie);
+        const response = await fetch(highscoresUrl(tokenData.token), options as any);
         console.log('Highscores fetched:', response.statusText);
         return {
             timestamp: tokenData.timestamp,
