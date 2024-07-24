@@ -81,6 +81,16 @@ If you prefer to use `crontab` to schedule tasks instead of running the applicat
     0 23 * * * curl http://localhost:25000/highscores
     ```
 
+## Challenge Settings
+
+The default challenge settings are dynamically configured based on the day of the week. The configuration rules are as follows:
+
+- **Monday, Wednesday, Friday**: The game mode is set to `Move`.
+- **Tuesday, Thursday, Saturday**: The game mode is set to `NM` (No Moving).
+- **Sunday**: The game mode is set to `NMPZ` (No Moving, Panning, or Zooming).
+
+This functionality is implemented to provide varied gameplay experiences depending on the day.
+
 ## Project Structure
 
 - `src/`

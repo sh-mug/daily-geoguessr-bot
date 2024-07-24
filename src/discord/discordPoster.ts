@@ -1,6 +1,6 @@
 import { Client, GatewayIntentBits } from 'discord.js';
 import dotenv from 'dotenv';
-import { ChallengeHighscores } from '../types';
+import { ChallengeHighscores, ChallengeSettingsForPost } from '../types';
 
 dotenv.config();
 
@@ -37,9 +37,9 @@ const postToDiscord = async (message: string) => {
 マップ：A Balanced Japan
 ゲームモード：NMPZ 60s
 */
-export const postChallengeToDiscord = async (challengeToken: string) => {
+export const postChallengeToDiscord = async (settings: ChallengeSettingsForPost) => {
     const timestamp = Math.floor(Date.now() / 1000);
-    const message = `## <t:${timestamp}:D>のデイリーチャレンジ\nリンク：${challengeUrl(challengeToken)}\nマップ：A Balanced Japan\nゲームモード：NMPZ 60s`;
+    const message = `## <t:${timestamp}:D>のデイリーチャレンジ\nリンク：${challengeUrl(settings.token)}\nマップ：${settings.name}\nゲームモード：${settings.mode} 60s`;
     await postToDiscord(message);
 }
 
