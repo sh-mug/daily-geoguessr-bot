@@ -10,7 +10,7 @@ const app = express();
 const port = 25000;
 
 const challenge = async () => {
-    const challengePayload = defaultChallenge();
+    const challengePayload = await defaultChallenge();
     const ChallengeSettings = await createChallenge(challengePayload);
     if (ChallengeSettings) {
         await postChallengeToDiscord(ChallengeSettings);

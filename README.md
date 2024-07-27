@@ -83,7 +83,14 @@ If you prefer to use `crontab` to schedule tasks instead of running the applicat
 
 ## Challenge Settings
 
-The default challenge settings are dynamically configured based on the day of the week. The configuration rules are as follows:
+The challenge settings randomly select maps from `config.json`. By default, the maps are:
+
+* [A Balanced Japan](https://www.geoguessr.com/maps/631a309ba54a618fca31960a)
+* [An Arbitrary Japan](https://www.geoguessr.com/maps/63e5ecc3ca384c72d0bd9bc4)
+* [Japan Urban Areas](https://www.geoguessr.com/maps/5ee8e6a803f80c500c7d49b0)
+* [Japan • 日本 60k+](https://www.geoguessr.com/maps/59cf49695d2de4db80351e6e)
+
+The game mode changes based on the day of the week:
 
 - **Monday, Wednesday, Friday**: The game mode is set to `Move`.
 - **Tuesday, Thursday, Saturday**: The game mode is set to `NM` (No Moving).

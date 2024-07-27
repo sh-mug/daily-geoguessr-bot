@@ -1,3 +1,4 @@
+import fs from 'fs/promises';
 import { ChallengePayload, ChallengeSettings } from "./types";
 
 export function createChallengePayload(settings: ChallengeSettings): ChallengePayload {
@@ -12,8 +13,13 @@ export function createChallengePayload(settings: ChallengeSettings): ChallengePa
     };
 }
 
-export function defaultChallenge(): ChallengeSettings {
-    const map = '631a309ba54a618fca31960a'; // A Balanced Japan
+const urlToMapId: (url: string) => string = (url) => url.split('/').pop() || '';
+
+export async function defaultChallenge(): Promise<ChallengeSettings> {
+    const mapUrls = JSON.parse(await fs.readFile('config.json', 'utf8')).maps;
+    const mapUrl = mapUrls[Math.floor(Math.random() * mapUrls.length)];
+    const map = urlToMapId(mapUrl);
+
     const today = new Date().getDay();
     switch (today) {
         case 1:     // Monday
