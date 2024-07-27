@@ -80,7 +80,14 @@ npm start
 
 ## チャレンジの設定
 
-デフォルトのチャレンジの設定は、曜日によって変わります。
+チャレンジの設定は、`config.json` に設定されたマップをランダムに選択するようになっています。デフォルトでは、以下のマップが設定されています:
+
+* [A Balanced Japan](https://www.geoguessr.com/maps/631a309ba54a618fca31960a)
+* [An Arbitrary Japan](https://www.geoguessr.com/maps/63e5ecc3ca384c72d0bd9bc4)
+* [Japan Urban Areas](https://www.geoguessr.com/maps/5ee8e6a803f80c500c7d49b0)
+* [Japan • 日本 60k+](https://www.geoguessr.com/maps/59cf49695d2de4db80351e6e)
+
+また、ゲームモードは曜日によって変わります。
 
 - **月曜日、水曜日、金曜日**: ゲームモードは `Move` に設定されます。
 - **火曜日、木曜日、土曜日**: ゲームモードは `NM` (移動禁止) に設定されます。
