@@ -10,7 +10,7 @@ const tokenFilePath = path.resolve('challengeToken.json');
 const highscoresUrl: (challengeId: string) => string = (challengeId: string) => {
     const params = new URLSearchParams({
         friends: 'false',
-        limit: '26',
+        limit: '100',
         minRounds: '5'
     }).toString();
 
