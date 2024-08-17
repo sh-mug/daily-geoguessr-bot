@@ -48,3 +48,8 @@ export interface ChallengeHighscores {
     token: string;
     highscores: HighscoresResponse;
 };
+
+export interface GameToken {
+    token: string;
+    state: string;
+};
