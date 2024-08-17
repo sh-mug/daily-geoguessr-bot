@@ -2,6 +2,7 @@ import fs from 'fs/promises';
 import fetch from 'node-fetch';
 import path from 'path';
 import { ChallengeHighscores, ChallengeToken } from '../types.js';
+import { playGame } from './challenge.js';
 import { createRequestOptions } from './common.js';
 import { loginAndGetCookie } from './login.js';
 
@@ -22,6 +23,10 @@ export const getHighscores = async (): Promise<ChallengeHighscores | undefined> 
         const cookie = await loginAndGetCookie();
         const tokenData = await fs.readFile(tokenFilePath, 'utf8')
             .then(data => JSON.parse(data) as ChallengeToken);
+
+        // play game automatically if not played yet
+        const GameToken = await playGame(tokenData);
+
         const options = createRequestOptions('GET', cookie);
         const response = await fetch(highscoresUrl(tokenData.token), options as any);
         console.log('Highscores fetched:', response.statusText);

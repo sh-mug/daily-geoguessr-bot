@@ -64,7 +64,7 @@ In this mode, the following endpoints are available:
 - `GET /challenge` - Triggers `challenge`.
 - `GET /highscores` - Triggers `highscores`.
 
-### Crontab Configuration
+#### Crontab Configuration
 
 If you prefer to use `crontab` to schedule tasks instead of running the application in standalone mode, you can set up `crontab` entries as follows:
 
@@ -121,7 +121,7 @@ This functionality is implemented to provide varied gameplay experiences dependi
 - Ensure that your bot has the necessary permissions to post messages in the specified Discord channel.
 - Be cautious with your credentials and avoid committing the `.env` file to version control.
 - Save the GeoGuessr cookie to `cookie.txt` during the initial login. The cookie is valid for one year. When it expires, manually delete `cookie.txt`.
-- To get challenge results, the creator must play the challenge daily due to GeoGuessr's API specifications.
+- If the challenge is not played when the results are retrieved, it will be automatically played. This is based on the GeoGuessr API specifications.
 
 ## License
 
