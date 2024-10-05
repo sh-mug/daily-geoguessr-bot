@@ -1,4 +1,4 @@
-import { Client, GatewayIntentBits } from 'discord.js';
+import { Client, GatewayIntentBits, TextChannel } from 'discord.js';
 import dotenv from 'dotenv';
 import { ChallengeHighscores, ChallengeSettingsForPost } from '../types';
 
@@ -20,7 +20,7 @@ const postToDiscord = async (message: string) => {
 
     client.once('ready', async () => {
         const channel = await client.channels.fetch(channelId);
-        if (channel?.isTextBased()) {
+        if (channel instanceof TextChannel) {
             await channel.send(message);
         } else {
             console.error('Channel not found or is not text-based.');
