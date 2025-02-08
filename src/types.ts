@@ -37,8 +37,14 @@ interface HighscoresResponse {
     map(arg0: (entry: any, index: any) => string): unknown;
     items: [
         {
-            playerName: string;
-            totalScore: number;
+            game: {
+                player: {
+                    nick: string;
+                    totalScore: {
+                        amount: number;
+                    }
+                }
+            }
         }
     ];
 };
