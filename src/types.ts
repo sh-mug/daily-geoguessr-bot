@@ -41,7 +41,7 @@ interface HighscoresResponse {
                 player: {
                     nick: string;
                     totalScore: {
-                        amount: number;
+                        amount: string;
                     }
                 }
             }

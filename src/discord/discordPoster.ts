@@ -67,7 +67,8 @@ export const postResultToDiscord: (ranking: ChallengeHighscores) => Promise<void
     // leaderboard: 上位min(6, highscores.length)人のランキングを表示
     const leaderboard = ranking.highscores.items.slice(0, 6)
         .map((entry, index) => `${index + 1}位: ${entry.game.player.nick}\n\t${entry.game.player.totalScore.amount}点`).join('\n');
-    const average = ranking.highscores.items.reduce((acc, entry) => acc + entry.game.player.totalScore.amount, 0) / ranking.highscores.items.length;
+    const totalScore = ranking.highscores.items.reduce((acc, entry) => acc + parseInt(entry.game.player.totalScore.amount, 10), 0);
+    const average = totalScore / ranking.highscores.items.length;
     const message = `## <t:${ranking.timestamp}:D>のチャレンジ結果\nリンク：${challengeUrl(ranking.token)}\n平均点：${Math.round(average)}\nランキング :\n\`\`\`\n${leaderboard}\n\`\`\``;
     await postToDiscord(message);
 }
